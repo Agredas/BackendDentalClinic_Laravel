@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->timestamps();
             $table->string('rol')->default('client');
-            $table->string('token');
+            $table->string('token')->nullable();
         });
     }
 
