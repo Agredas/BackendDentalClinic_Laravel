@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AppointmentController extends Controller
 {
@@ -12,10 +13,10 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $appointment=appointment::all(); //FUNCIONA
-        return $appointment;
+    public function indexAll()
+    {   
+        $appointments=Appointment::all();
+        return $appointments;
     }
 
     /**

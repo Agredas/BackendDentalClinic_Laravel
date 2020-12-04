@@ -15,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user=user::all(); // FUNCIONA 
-        return $user;
+        $users=User::all(); // FUNCIONA 
+        return $users;
     }
 
     /**
@@ -38,21 +38,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
+        $input['password']=bcrypt($input['password']);
 
         $rules=[
             'name'=>'required',
-            'surnames'=>'required',
-            'phone'=>'required',
             'email'=>'required',
             'password'=>'required'
         ];
 
         $messages=[
             'name.required'=>'The name field is empty.',
-            'surnames.required'=>'The surnames field is empty.',
-            'phone.required'=>'The phone field is empty.',
-            'email.required'=>'The email field is empty or wrong.',
-            'password.required'=>'The password field is empty or wrong.'
+            'email.required'=>'The email field is empty.',
+            'password.required'=>'The password field is empty.'
         ];
 
         $validator = Validator::make($input,$rules,$messages);
