@@ -37,7 +37,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+
+        $rules=[
+            'name'=>'required',
+            'surnames'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'password'=>'required'
+        ];
+
+        $messages=[
+            'name.required'=>'The name field is empty.',
+            'surnames.required'=>'The surnames field is empty.',
+            'phone.required'=>'The phone field is empty.',
+            'email.required'=>'The email field is empty or wrong.',
+            'password.required'=>'The password field is empty or wrong.'
+        ];
+
+        $validator = Validator::make($input,$rules,$messages);
+
+        if ($validator->fails()) {
+            return response()->json([$validator->errors()],400);
+        }else{
+            $user=user::create($input);
+            return $user;
+        } 
     }
 
     /**
