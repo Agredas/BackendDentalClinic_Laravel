@@ -22,7 +22,8 @@ class AppointmentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->realText($maxNbChars = 15),
+            'description' => $this->faker->realText($maxNbChars = 40),
         ];
     }
 }
