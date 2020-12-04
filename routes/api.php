@@ -21,6 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/client/showClients',[UserController::class,'index']);
+Route::get('/client/showClients',[UserController::class,'index']);  //Funciona
 Route::post('/client/register',[UserController::class,'store']);
-Route::get('/appointment/show',[AppointmentController::class,'index']);
+Route::get('/appointment/show',[AppointmentController::class,'index']);    //Funciona
