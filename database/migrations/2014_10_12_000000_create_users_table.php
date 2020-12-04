@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('rol')->default('client');
             $table->string('token');
-            $table->rememberToken();
         });
     }
 
