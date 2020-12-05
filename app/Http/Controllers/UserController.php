@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -20,23 +21,12 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $input=$request->all();
         $input['password']=bcrypt($input['password']);
 
@@ -57,10 +47,30 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json([$validator->errors()],400);
         }else{
-            $user=user::create($input);
+            $user=User::create($input);
             return $user;
         } 
     }
+    public function login(Request $request){
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+            $user = Auth::user();
+            $token = $user->createToken('userToken')->accessToken;
+
+            $respuesta=[];
+            $respuesta['name']=$user->name;
+            $respuesta['token']= 'Bearer '.$token;
+            return response()->json($respuesta,200);
+        }else{
+            return response()->json(['error'=>'Not authenticated.'],401);
+        }
+    }
+    public function logout(Request $request){
+        $token = $request->user()->token();
+        $token ->revoke();
+
+        return response()->json('Logout done successfully.',200);
+
+}
 
     /**
      * Display the specified resource.
@@ -68,9 +78,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Integer $id)
     {
-        //
+        $user = DB::table('users')->where('id', '=', $id)->get();
+        return $user;
     }
 
     /**
