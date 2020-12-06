@@ -17,7 +17,7 @@ use App\Http\Controllers\AppointmentController;
 |
 */
 
-Route::group(['middleware' => ['forceJsonHeader']], function () {
+Route::group(['middleware' => ['ForceHeaderAcceptJson']], function () {
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
     });
@@ -27,12 +27,9 @@ Route::group(['middleware' => ['forceJsonHeader']], function () {
     Route::post('client/register', [UserController::class,'store']);    //It works. - Register Clients.
     Route::post('client/login', [UserController::class,'login'])->name('login');   //It works. - Login.
     
-    Route::middleware('auth:api')->get('/clients', [UserController::class, 'index'])->middleware('role:admin');
+    Route::middleware('auth:api')->get('/client/ShowClients', [UserController::class, 'index'])->middleware('role:admin'); //It works. - Show Clients.
     
     Route::get('client/logout', [UserController::class,'logout'])->middleware('auth:api'); //It works. - Logout.
-    
-    Route::get('/client/showClients',[UserController::class,'index']);  //It works. - Show Clients.
-    
     
     Route::get('/appointment/show',[AppointmentController::class,'index']);  //It works.
     });
