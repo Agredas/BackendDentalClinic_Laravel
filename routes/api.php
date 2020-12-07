@@ -26,10 +26,13 @@ Route::group(['middleware' => ['ForceHeaderAcceptJson']], function () {
     
     Route::post('client/register', [UserController::class,'store']);    //It works. - Register Clients.
     Route::post('client/login', [UserController::class,'login'])->name('login');   //It works. - Login.
+    Route::get('client/logout', [UserController::class,'logout'])->middleware('auth:api'); //It works. - Logout.
+    
+    Route::post('appointment/create', [AppointmentController::class,'store'])->middleware('auth:api'); //It works. - Create Appointment.
+    Route::delete('appointment/cancel/{id}', [AppointmentController::class,'destroy'])->middleware('auth:api'); //It works. - Create Appointment.
+
     
     Route::middleware('auth:api')->get('/client/ShowClients', [UserController::class, 'index'])->middleware('role:admin'); //It works. - Show Clients.
     
-    Route::get('client/logout', [UserController::class,'logout'])->middleware('auth:api'); //It works. - Logout.
-    
-    Route::get('/appointment/show',[AppointmentController::class,'index']);  //It works.
+    Route::get('appointment/show',[AppointmentController::class,'index'])->middleware('role:admin');  //It works. - Show all Appointments.
     });
