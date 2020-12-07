@@ -10,8 +10,8 @@ class Role{
     //User must be authenticated
     $user = Auth::user();
 
-    if(in_array($user->rol, $roles))
+    if(in_array($user->role, $roles))
       return $next($request);
-      return response()->json(['error' => 'You dont have acces to this resource'], 403);
+      return response()->json(['error' => "You don't have access to this resource"], 403);
   }
 }
