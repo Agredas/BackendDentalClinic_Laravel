@@ -11,8 +11,8 @@ class Appointment extends Model
 
     protected $guarded = [];
 
-    public function appointments()
+    public function users()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 }
