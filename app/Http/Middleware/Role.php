@@ -12,6 +12,6 @@ class Role{
 
     if(in_array($user->role, $roles))
       return $next($request);
-      return response()->json(['error' => "You don't have access to this resource"], 403);
+      return response()->json(['error' => "You don't have access to this resource."], 403);
   }
 }
