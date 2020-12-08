@@ -23,9 +23,6 @@ Route::group(['middleware' => ['ForceHeaderAcceptJson']], function () {
     });
     
     Route::apiResource('users', UserController::class); // It works.
-    Route::get('/', function(){
-        return response()->json(['message' => 'up and running!'], 200);
-    });
     
     Route::post('client/register', [UserController::class,'store']);    //It works. - Register Clients.
     Route::post('client/login', [UserController::class,'login'])->name('login');   //It works. - Login.
