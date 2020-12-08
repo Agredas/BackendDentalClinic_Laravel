@@ -34,5 +34,5 @@ Route::group(['middleware' => ['ForceHeaderAcceptJson']], function () {
     
     Route::middleware('auth:api')->get('/client/ShowClients', [UserController::class, 'index'])->middleware('role:admin'); //It works. - Show Clients.
     
-    Route::get('appointment/show',[AppointmentController::class,'index'])->middleware('role:admin');  //It works. - Show all Appointments.
+    Route::get('appointment/showAll',[AppointmentController::class,'index'])->middleware('role:admin');  //It works. - Show all Appointments.
     });
