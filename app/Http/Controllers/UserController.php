@@ -59,7 +59,7 @@ class UserController extends Controller
             $respuesta=[];
             $respuesta['name']=$user->name;
             $respuesta['token']= $token;
-            $respuesta['role']= $user->role;
+            $respuesta['role']= $user->rol;
             return response()->json($respuesta,200);
         }else{
             return response()->json(['error'=>'Not authenticated.'],401);
