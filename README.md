@@ -1,4 +1,4 @@
-###🦷 Laravel Backend Dental Clinic 🦷
+### 🦷 Laravel Backend Dental Clinic 🦷
 
 This is a project where I have used PhP and Laravel for a Dental Clinic.
 
@@ -24,7 +24,9 @@ You can be a client and create appointments, view and delete them, or you can be
 ## You need to have certain things installed:
 
   > composer update
+
   > php artisan migrate
+
   > php artisan passport:install
 
 ## Configuration
