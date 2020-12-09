@@ -9,7 +9,6 @@ class Role{
   public function handle(Request $request, Closure $next, ...$roles){
     //User must be authenticated
     $user = Auth::user();
-
     if(in_array($user->rol, $roles))
       return $next($request);
       return response()->json(['error' => "You don't have access to this resource."], 403);

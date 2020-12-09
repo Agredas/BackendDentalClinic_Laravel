@@ -19,23 +19,24 @@ use App\Http\Controllers\AppointmentController;
 Route::get('/', function(){
     return response()->json(['message' => 'up and running!'], 200);
 });
-Route::group(['middleware' => ['ForceHeaderAcceptJson']], function () {
-    Route::middleware('auth:api')->get('/user', function (Request $request) {
+
+Route::post('client/register', [UserController::class,'store']);    //It works. - Register Clients.
+Route::post('client/login', [UserController::class,'login'])->name('login');   //It works. - Login.
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/user', function (Request $request) {
         return $request->user();
     });
     
     Route::apiResource('users', UserController::class); // It works.
     
-    Route::post('client/register', [UserController::class,'store']);    //It works. - Register Clients.
-    Route::post('client/login', [UserController::class,'login'])->name('login');   //It works. - Login.
-    Route::post('client/logout', [UserController::class,'logout'])->middleware('auth:api'); //It works. - Logout.
+    Route::post('client/logout', [UserController::class,'logout']); //It works. - Logout.
     
-    Route::post('appointment/create', [AppointmentController::class,'store'])->middleware('auth:api'); //It works. - Create Appointment.
-    Route::get('appointment/show', [AppointmentController::class,'index'])->middleware('auth:api');
-    Route::delete('appointment/cancel/{id}', [AppointmentController::class,'destroy'])->middleware('auth:api'); //It works. - Create Appointment.
+    Route::post('appointment/create', [AppointmentController::class,'store']); //It works. - Create Appointment.
+    Route::get('appointment/show', [AppointmentController::class,'index']);
+    Route::delete('appointment/cancel/{id}', [AppointmentController::class,'destroy']); //It works. - Create Appointment.
 
-    
-    Route::middleware(['auth:api','role:admin'])->get('/appointment/showAll', [UserController::class, 'indexAll']); //It works. - Show Clients.
-    
-    Route::get('appointment/showAll',[AppointmentController::class,'indexAll'])->middleware('role:admin');  //It works. - Show all Appointments.
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/appointment/showAll', [AppointmentController::class, 'indexAll']); //It works. - Show Apps. 
     });
+});
