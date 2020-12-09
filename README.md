@@ -6,7 +6,7 @@ You can be a client and create appointments, view and delete them, or you can be
 
 - Links to test the demo:
   - Backend: https://guarded-harbor-30350.herokuapp.com/api
-  - Frontend: This is a project to introduce the use of PhP and Laravel
+  - Frontend: https://front-dental-clinic-laravel.herokuapp.com/
 
 🔧Technologies🔨
 
