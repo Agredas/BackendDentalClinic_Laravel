@@ -21,9 +21,10 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index()
     {
-        $appointments = Appointment::where('user_id', '=', $user)->get();
+        $user = Auth::user();
+        $appointments = Appointment::where('user_id', '=', $user->id)->get();
         return $appointments;
     }
 
