@@ -58,7 +58,7 @@ class UserController extends Controller
 
             $respuesta=[];
             $respuesta['name']=$user->name;
-            $respuesta['token']= 'Bearer '.$token;
+            $respuesta['token']= $token;
             return response()->json($respuesta,200);
         }else{
             return response()->json(['error'=>'Not authenticated.'],401);
@@ -69,8 +69,7 @@ class UserController extends Controller
         $token ->revoke();
 
         return response()->json('Logout done successfully.',200);
-
-}
+    }
 
     /**
      * Display the specified resource.
@@ -84,37 +83,4 @@ class UserController extends Controller
         return $user;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Appointment  $appointment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Appointment $appointment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }
