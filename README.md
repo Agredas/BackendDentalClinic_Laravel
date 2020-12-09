@@ -38,13 +38,13 @@ You can be a client and create appointments, view and delete them, or you can be
 
 ## Endpoints 📍
 
-# Clients: 
+### Clients: 
 
 - POST /client/register ➡ A new client is added.
 - POST /client/login ➡ Client logs into his account.
 - POST /client/logout ➡ Client extis his acccount.
 
-# Appointments: 
+### Appointments: 
 
 - POST /appointment/create ➡ Client can create an appointment.
 - DELETE /appointment/cancel/{id} ➡ Client can cancel an appointment.
