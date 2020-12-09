@@ -43,9 +43,11 @@ You can be a client and create appointments, view and delete them, or you can be
 - POST /client/register ➡ A new client is added.
 - POST /client/login ➡ Client logs into his account.
 - POST /client/logout ➡ Client extis his acccount.
+- 
 
 ### Appointments: 
 
 - POST /appointment/create ➡ Client can create an appointment.
 - DELETE /appointment/cancel/{id} ➡ Client can cancel an appointment.
-- GET /appointment/show ➡ All appointments are displayed.
+- GET /appointment/show ➡ Logged client can see her appointments.
+- GET /appointment/showAll ➡ Admin can see all appointments of all clients.
