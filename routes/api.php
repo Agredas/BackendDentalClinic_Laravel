@@ -35,7 +35,7 @@ Route::group(['middleware' => ['ForceHeaderAcceptJson']], function () {
     Route::delete('appointment/cancel/{id}', [AppointmentController::class,'destroy'])->middleware('auth:api'); //It works. - Create Appointment.
 
     
-    Route::middleware('auth:api')->get('/client/ShowClients', [UserController::class, 'index'])->middleware('role:admin'); //It works. - Show Clients.
+    Route::middleware('auth:api')->get('/client/ShowAll', [UserController::class, 'index'])->middleware('role:admin'); //It works. - Show Clients.
     
     Route::get('appointment/showAll',[AppointmentController::class,'indexAll'])->middleware('role:admin');  //It works. - Show all Appointments.
     });
