@@ -43,7 +43,6 @@ You can be a client and create appointments, view and delete them, or you can be
 - POST /client/register ➡ A new client is added.
 - POST /client/login ➡ Client logs into his account.
 - POST /client/logout ➡ Client extis his acccount.
-- 
 
 ### Appointments: 
 
